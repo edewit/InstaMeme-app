@@ -1,6 +1,8 @@
 /* Empty. Add your own CSS if you like */
 .preview {
   margin: auto;
+  max-width: 100%; 
+  height: auto;
 }
 
 .slide-box{
