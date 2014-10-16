@@ -69,9 +69,6 @@ angular.module('starter.controllers', [])
   $scope.fetchPhotos = function () {
     service.get().success(function (res) {
       $scope.photos = res.pictures.map(function (pic) {
-
-        $fh.cloud_props = {hosts: {url: "http://192.168.0.12:8001"}};
-
         return $fh.cloud_props.hosts.url + '/' + pic;
       });
       window.dispatchEvent(new Event('resize'));
@@ -81,7 +78,6 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $fh.cloud_props = {hosts: {url: "http://192.168.0.12:8001"}};
   $scope.fetchPhotos();
 })
 

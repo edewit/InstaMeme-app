@@ -8,8 +8,6 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function ($ionicPlatform) {
-  $fh.cloud_props = {hosts: {url: "http://192.168.0.12:8001"}};
-
   $ionicPlatform.ready(function () {
     var pushConfig = {
       pushServerURL: "https://supersimple-lholmqui.rhcloud.com/ag-push/",
