@@ -1,0 +1,99 @@
+/* Empty. Add your own CSS if you like */
+.preview {
+  margin: auto;
+}
+
+.slide-box{
+  height: 100%;
+  text-align: center;
+  max-height: calc(100% - 88px);
+}
+
+.slider-slide:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-left: -0.3em;
+}
+
+.slide-box__image{
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.notification {
+    position: absolute;
+    z-index: 99;
+    width: 90%;
+    margin: 30% 5%;
+    -webkit-box-shadow: 3px 3px 5px 0px #333;
+    -moz-box-shadow: 3px 3px 5px 0px #333;
+    box-shadow: 3px 3px 5px 0px #333;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.meme-top {
+  position: absolute;
+  top: 0;
+}
+
+.meme-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.meme img {
+  z-index: 1;
+}
+
+.content input {
+  background: transparent;
+  border: 0;
+
+  color: white;
+  font-size: 4em;
+  font-weight: bold;
+  text-align: center;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+
+  /*width: 500px;*/
+  height: 2em;
+}
+
+.meme-bottom input {
+  bottom: 0;
+}
+
+*:focus {
+    outline: 0;
+}

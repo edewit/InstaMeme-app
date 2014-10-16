@@ -1,0 +1,115 @@
+var test = {};
+undefined
+test.name = 'Erik Jan';
+Erik Jan
+console
+ReferenceError: unable to reference: console
+org.dynjs.exception.ThrowException: ReferenceError: unable to reference: console
+	at <global>.<eval>(<eval>:1)
+	at <global>.<eval>(Unknown Source)
+	at org.dynjs.runtime.interp.InvokeDynamicInterpretingVisitor.getValue(InvokeDynamicInterpretingVisitor.java:143)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:476)
+	at org.dynjs.parser.ast.ExpressionStatement.accept(ExpressionStatement.java:54)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:281)
+	at org.dynjs.parser.ast.BlockStatement.accept(BlockStatement.java:102)
+	at org.dynjs.runtime.interp.InterpretedBasicBlock.call(InterpretedBasicBlock.java:28)
+	at org.dynjs.runtime.BasicBlockDelegate.call(BasicBlockDelegate.java:26)
+	at org.dynjs.runtime.CompilableBasicBlock.call(CompilableBasicBlock.java:24)
+	at org.dynjs.runtime.wrapper.JavascriptProgram.execute(JavascriptProgram.java:37)
+	at org.dynjs.runtime.ExecutionContext.eval(ExecutionContext.java:155)
+	at org.dynjs.runtime.Runner.evaluate(Runner.java:102)
+	at org.dynjs.runtime.DynJS.evaluate(DynJS.java:51)
+	at org.dynjs.cli.Repl$2.readConsoleOutput(Repl.java:94)
+	at org.jboss.aesh.console.Console.processOperationResult(Console.java:508)
+	at org.jboss.aesh.console.Console.read(Console.java:473)
+	at org.jboss.aesh.console.Console.access$200(Console.java:65)
+	at org.jboss.aesh.console.Console$2.run(Console.java:408)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:722)
+
+println(test);
+ReferenceError: unable to reference: println
+org.dynjs.exception.ThrowException: ReferenceError: unable to reference: println
+	at <global>.<eval>(<eval>:1)
+	at <global>.<eval>(Unknown Source)
+	at org.dynjs.runtime.interp.InvokeDynamicInterpretingVisitor.getValue(InvokeDynamicInterpretingVisitor.java:143)
+	at org.dynjs.runtime.interp.InvokeDynamicInterpretingVisitor.visit(InvokeDynamicInterpretingVisitor.java:60)
+	at org.dynjs.parser.ast.FunctionCallExpression.accept(FunctionCallExpression.java:85)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:475)
+	at org.dynjs.parser.ast.ExpressionStatement.accept(ExpressionStatement.java:54)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:281)
+	at org.dynjs.parser.ast.BlockStatement.accept(BlockStatement.java:102)
+	at org.dynjs.runtime.interp.InterpretedBasicBlock.call(InterpretedBasicBlock.java:28)
+	at org.dynjs.runtime.BasicBlockDelegate.call(BasicBlockDelegate.java:26)
+	at org.dynjs.runtime.CompilableBasicBlock.call(CompilableBasicBlock.java:24)
+	at org.dynjs.runtime.wrapper.JavascriptProgram.execute(JavascriptProgram.java:37)
+	at org.dynjs.runtime.ExecutionContext.eval(ExecutionContext.java:155)
+	at org.dynjs.runtime.Runner.evaluate(Runner.java:102)
+	at org.dynjs.runtime.DynJS.evaluate(DynJS.java:51)
+	at org.dynjs.cli.Repl$2.readConsoleOutput(Repl.java:94)
+	at org.jboss.aesh.console.Console.processOperationResult(Console.java:508)
+	at org.jboss.aesh.console.Console.read(Console.java:473)
+	at org.jboss.aesh.console.Console.access$200(Console.java:65)
+	at org.jboss.aesh.console.Console$2.run(Console.java:408)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:722)
+
+print(test);
+undefined
+print(test.name);
+undefined
+window
+ReferenceError: unable to reference: window
+org.dynjs.exception.ThrowException: ReferenceError: unable to reference: window
+	at <global>.<eval>(<eval>:1)
+	at <global>.<eval>(Unknown Source)
+	at org.dynjs.runtime.interp.InvokeDynamicInterpretingVisitor.getValue(InvokeDynamicInterpretingVisitor.java:143)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:476)
+	at org.dynjs.parser.ast.ExpressionStatement.accept(ExpressionStatement.java:54)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:281)
+	at org.dynjs.parser.ast.BlockStatement.accept(BlockStatement.java:102)
+	at org.dynjs.runtime.interp.InterpretedBasicBlock.call(InterpretedBasicBlock.java:28)
+	at org.dynjs.runtime.BasicBlockDelegate.call(BasicBlockDelegate.java:26)
+	at org.dynjs.runtime.CompilableBasicBlock.call(CompilableBasicBlock.java:24)
+	at org.dynjs.runtime.wrapper.JavascriptProgram.execute(JavascriptProgram.java:37)
+	at org.dynjs.runtime.ExecutionContext.eval(ExecutionContext.java:155)
+	at org.dynjs.runtime.Runner.evaluate(Runner.java:102)
+	at org.dynjs.runtime.DynJS.evaluate(DynJS.java:51)
+	at org.dynjs.cli.Repl$2.readConsoleOutput(Repl.java:94)
+	at org.jboss.aesh.console.Console.processOperationResult(Console.java:508)
+	at org.jboss.aesh.console.Console.read(Console.java:473)
+	at org.jboss.aesh.console.Console.access$200(Console.java:65)
+	at org.jboss.aesh.console.Console$2.run(Console.java:408)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:722)
+
+exit;
+ReferenceError: unable to reference: exit
+org.dynjs.exception.ThrowException: ReferenceError: unable to reference: exit
+	at <global>.<eval>(<eval>:1)
+	at <global>.<eval>(Unknown Source)
+	at org.dynjs.runtime.interp.InvokeDynamicInterpretingVisitor.getValue(InvokeDynamicInterpretingVisitor.java:143)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:476)
+	at org.dynjs.parser.ast.ExpressionStatement.accept(ExpressionStatement.java:54)
+	at org.dynjs.runtime.interp.BasicInterpretingVisitor.visit(BasicInterpretingVisitor.java:281)
+	at org.dynjs.parser.ast.BlockStatement.accept(BlockStatement.java:102)
+	at org.dynjs.runtime.interp.InterpretedBasicBlock.call(InterpretedBasicBlock.java:28)
+	at org.dynjs.runtime.BasicBlockDelegate.call(BasicBlockDelegate.java:26)
+	at org.dynjs.runtime.CompilableBasicBlock.call(CompilableBasicBlock.java:24)
+	at org.dynjs.runtime.wrapper.JavascriptProgram.execute(JavascriptProgram.java:37)
+	at org.dynjs.runtime.ExecutionContext.eval(ExecutionContext.java:155)
+	at org.dynjs.runtime.Runner.evaluate(Runner.java:102)
+	at org.dynjs.runtime.DynJS.evaluate(DynJS.java:51)
+	at org.dynjs.cli.Repl$2.readConsoleOutput(Repl.java:94)
+	at org.jboss.aesh.console.Console.processOperationResult(Console.java:508)
+	at org.jboss.aesh.console.Console.read(Console.java:473)
+	at org.jboss.aesh.console.Console.access$200(Console.java:65)
+	at org.jboss.aesh.console.Console$2.run(Console.java:408)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:722)
+
+exit
