@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope, $location, service) {
+.controller('AppCtrl', function ($rootScope, $scope, $timeout, $location, service) {
   $scope.takePicture = function () {
     getPicture();
   };
@@ -9,40 +9,45 @@ angular.module('starter.controllers', [])
     $location.url('/tab/main');
   };
 
-  $scope.$on('notification', function ($scope, $location, event) {
-    $location.url('/tab/picture');
+  $scope.$on('notification', function ($scope, event) {
     $scope.notification = event;
-    $scope.data = null;
-    $scope.$apply();
+    $rootScope.url = event.url;
+
+    $timeout(function () {
+      $location.url('/tab/main');
+    }, 1000);
   });
 
   $scope.dismissAlert = function () {
     delete $scope.notification;
   };
 
-  $scope.upload = function () {
-    service.put({pic: $scope.data, meme: $scope.meme}).then(function (r) {
-      $scope.data = null;
-      $location.url('/tab/main');
-    }).then(null, function (err) {
-      alert('Error' + err);
-      $location.url('/tab/main');
-    });
+  $scope.showTwitter = function() {
+    return $scope.data || $location.url() === '/tab/main';
   };
+  
+  $scope.upload = function () {
+    if ($scope.data) {
+      service.put({
+        pic: $scope.data
+      }).then(function (r) {
+        reset();
+      }).then(null, function (err) {
+        alert('Error ' + err);
+      });
+    } else {
+      var url = $rootScope.photos[$scope.slide];
+      service.tweet(url);
+    }
+  };
+
+  function reset() {
+    $scope.data = null;
+  }
 
   function getPicture() {
     var onSuccess = function (data) {
-      $scope.canvas = document.getElementById('myCanvas');
-      context = $scope.canvas.getContext('2d');
-      var imageObj = new Image();
-
-      imageObj.onload = function() {
-        context.drawImage(imageObj, 0, 0);
-      };
-
-      imageObj.src = data;
-
-      $scope.data = data;
+      $scope.data = "data:image/jpeg;base64," + data;
       $scope.$apply();
     };
 
@@ -52,34 +57,49 @@ angular.module('starter.controllers', [])
 
     navigator.camera.getPicture(onSuccess, onFail, {
       quality: 50,
-      destinationType: Camera.DestinationType.FILE_URL,
+      destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
       allowEdit: false,
       encodingType: Camera.EncodingType.JPEG,
       targetWidth: 640,
       targetHeight: 480,
+      correctOrientation: true,
       popoverOptions: CameraPopoverOptions
     });
 
     $location.url('/tab/picture');
   }
+
+  reset();
 })
 
-.controller('MainCtrl', function ($scope, service) {
+.controller('MainCtrl', function ($rootScope, $scope, $ionicSlideBoxDelegate, service) {
   $scope.fetchPhotos = function () {
     service.get().success(function (res) {
-      $scope.photos = res.pictures.map(function (pic) {
+      $rootScope.photos = res.pictures.map(function (pic) {
         return $fh.cloud_props.hosts.url + '/' + pic;
       });
-      window.dispatchEvent(new Event('resize'));
+      $ionicSlideBoxDelegate.update();
+
+      if ($rootScope.url) {
+        selectSlide($rootScope.url);
+      }
     })
-    .error(function (err) {
-      console.log(err);
-    });
+      .error(function (err) {
+        console.log(err);
+      });
   };
+
+  function selectSlide(url) {
+    var length = $rootScope.photos.length;
+    for (var i = 0; i < length; i++) {
+      if (rootScope.photos[i] === url) {
+        $ionicSlideBoxDelegate.slide(i);
+      }
+    }
+  }
 
   $scope.fetchPhotos();
 })
 
-.controller('PictureCtrl', function ($scope, service) {
-});
+.controller('PictureCtrl', function ($scope, service) {});

@@ -1,9 +1,4 @@
-<div id="notification" class="notification alert alert-info" ng-show="notification">
-  <button type="button" class="close" aria-hidden="true" ng-click="dismissAlert()">&times;</button>
-  <span>{{ notification.alert }}</span>
-</div>
-
-<ion-slide-box class="slide-box">
+<ion-slide-box class="slide-box" active-slide="$parent.slide">
   <ion-slide class="box" ng-repeat="photo in photos">
     <img class="slide-box__image" ng-src="{{ photo }}">
   </ion-slide>

@@ -1,9 +1,16 @@
+<canvas id="myCanvas" width="640" height="480" style="display:none"></canvas>
+
+<div id="notification" class="notification alert alert-info" ng-show="notification">
+  <button type="button" class="close" aria-hidden="true" ng-click="dismissAlert()">&times;</button>
+  <span>{{ notification.alert }}</span>
+</div>
+
 <ion-nav-view name="tab-dash" class="view"></ion-nav-view>
 <div class="tabs tabs-icon-only">
   <a class="tab-item" ng-click="takePicture()">
     <i class="icon ion-camera positive"></i>
   </a>
-  <a class="tab-item" ng-click="upload()" ng-show="data">
+  <a class="tab-item" ng-click="upload()" ng-show="showTwitter()">
     <i class="icon ion-social-twitter positive"></i>
   </a>
   <a class="tab-item" ng-click="showImages()">

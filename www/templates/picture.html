@@ -1,7 +1,6 @@
 <div class="content">
   <div class="row row-top">
-    <canvas id="myCanvas" width="640" height="480" ng-show="data"></canvas>
-    <img src="img/Devoxx2014-InfinitePossibilities.png" class="preview" ng-hide="data">
+    <img src="{{url == null ? 'img/Devoxx2014-InfinitePossibilities.png' : url}}" class="preview">
   </div>
   <div class="row row-bottom" style="padding: 3px">
     <div class="col-50">

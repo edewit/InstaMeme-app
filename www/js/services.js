@@ -11,45 +11,45 @@ angular.module('starter.services', [])
     },
     put: function (data) {
       var photo = data.pic,
-        meme = data.meme,
         deferred = $q.defer();
 
       var win = function (r) {
-        console.log("Code = " + r.responseCode);
-        console.log("Response = " + r.response);
-        console.log("Sent = " + r.bytesSent);
-
+        console.log("put " + r);
         deferred.resolve(r);
       }.bind(this);
 
       var fail = function (error) {
-        alert("An error has occurred: Code = " + error.code);
-        console.log("upload error source " + error.source);
-        console.log("upload error target " + error.target);
+        alert("An error has occurred: Code = " + error);
         deferred.reject(error);
       };
-
-      var options = new FileUploadOptions();
-      var ft = new FileTransfer();
-      options.fileKey = "file";
-      options.mimeType = "image/jpeg";
-
-      options.fileName = guid() + '.jpg';
-      ft.upload(photo, encodeURI($fh.cloud_props.hosts.url + '/cloud/picture'), win, fail, options);
+      
+      $fh.act({
+        "act": "picture",
+        "req": {
+          "data": data.pic.split(',')[1]
+        }
+      }, win, fail);
 
       return deferred.promise;
+    },
+    tweet: function (url) {
+      var deferred = $q.defer();
+      var win = function (r) {
+        console.log("retweeted " + r);
+        deferred.resolve(r);
+      }.bind(this);
+
+      var fail = function (error) {
+        alert("An error has occurred: Code = " + error);
+        deferred.reject(error);
+      };
+      
+      $fh.act({
+        "act": "picture/retweet",
+        "req": {
+          "url": url
+        }
+      }, win, fail);
     }
   };
 });
-
-var guid = (function () {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return function () {
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
-  };
-})();
