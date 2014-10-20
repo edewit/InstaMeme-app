@@ -3,11 +3,18 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('service', function ($http, $log, $q) {
+.factory('service', function ($q) {
   return {
     get: function () {
       var deferred = $q.defer();
-      return $http.get($fh.cloud_props.hosts.url + '/cloud/picture');
+      $fh.cloud({
+        "path": "/cloud/picture",
+        "method": "GET"
+      }, function(res) {
+        deferred.resolve(res);
+      });
+      
+      return deferred.promise;
     },
     put: function (data) {
       var photo = data.pic,
@@ -23,9 +30,9 @@ angular.module('starter.services', [])
         deferred.reject(error);
       };
       
-      $fh.act({
-        "act": "picture",
-        "req": {
+      $fh.cloud({
+        "path": "/cloud/picture",
+        "data": {
           "data": data.pic.split(',')[1]
         }
       }, win, fail);
@@ -44,9 +51,9 @@ angular.module('starter.services', [])
         deferred.reject(error);
       };
       
-      $fh.act({
-        "act": "picture/retweet",
-        "req": {
+      $fh.cloud({
+        "path": "/cloud/picture/retweet",
+        "data": {
           "url": url
         }
       }, win, fail);

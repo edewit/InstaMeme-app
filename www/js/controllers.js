@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($rootScope, $scope, $timeout, $location, service) {
+  $scope.slide = 0;
+  
   $scope.takePicture = function () {
     getPicture();
   };
@@ -11,7 +13,7 @@ angular.module('starter.controllers', [])
 
   $scope.$on('notification', function ($scope, event) {
     $scope.notification = event;
-    $rootScope.url = event.url;
+    $rootScope.url = event.payload.url;
 
     $timeout(function () {
       $location.url('/tab/main');
@@ -32,8 +34,6 @@ angular.module('starter.controllers', [])
         pic: $scope.data
       }).then(function (r) {
         reset();
-      }).then(null, function (err) {
-        alert('Error ' + err);
       });
     } else {
       var url = $rootScope.photos[$scope.slide];
@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
 
 .controller('MainCtrl', function ($rootScope, $scope, $ionicSlideBoxDelegate, service) {
   $scope.fetchPhotos = function () {
-    service.get().success(function (res) {
+    service.get().then(function (res) {
       $rootScope.photos = res.pictures.map(function (pic) {
         return $fh.cloud_props.hosts.url + '/' + pic;
       });
@@ -84,16 +84,15 @@ angular.module('starter.controllers', [])
       if ($rootScope.url) {
         selectSlide($rootScope.url);
       }
-    })
-      .error(function (err) {
-        console.log(err);
-      });
+    }, function (err) {
+      console.log(err);
+    });
   };
 
   function selectSlide(url) {
     var length = $rootScope.photos.length;
     for (var i = 0; i < length; i++) {
-      if (rootScope.photos[i] === url) {
+      if ($rootScope.photos[i] === url) {
         $ionicSlideBoxDelegate.slide(i);
       }
     }
