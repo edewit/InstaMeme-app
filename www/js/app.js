@@ -10,14 +10,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {
     var pushConfig = {
-      pushServerURL: "https://supersimple-lholmqui.rhcloud.com/ag-push/",
+      pushServerURL: "https://push-ipaasdevoxx.rhcloud.com/ag-push/",
       android: {
-        senderID: "1064902278236",
-        variantID: "8cb162f8-e073-49f7-a059-765e5eb32097",
-        variantSecret: "65dc03b1-36ed-44b2-93b3-5b0ffdf282cc"
+        senderID: "517285908032",
+        variantID: "bb4d2e21-9baf-4204-b0b6-33873fb0b0fc",
+        variantSecret: "39de7063-7232-43c0-b18c-d401cc23a71d"
+      },
+      ios: {
+        variantID: '0fb33585-3b53-4de6-8f02-1a93a42f0d5c',
+        variantSecret: 'e4a07d8f-66cd-4d40-ad6d-a4e8000f42d8'
       }
     };
-
+    
     push.register(onNotification, successHandler, errorHandler, pushConfig);
 
     function onNotification(event) {
