@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
     $timeout(function () {
       $location.url('/tab/main');
       delete $rootScope.notification;
-    }, 2000);
+    }, 3000);
   });
 
   $scope.dismissAlert = function () {
@@ -36,12 +36,22 @@ angular.module('starter.controllers', [])
         pic: $scope.data
       }).then(function (r) {
         reset();
+        localNotification('New meme ready with tag ' + r.message.tag);
       });
     } else {
-      var url = $rootScope.photos[$scope.slide];
-      service.tweet(url);
+      service.tweet($scope.slide).then(function(res) {
+        var msg = res.message.meme;
+        localNotification(msg.meme.top + ' ' + msg.tag + ' retweeted');
+      });
     }
   };
+  
+  function localNotification(msg) {
+    $rootScope.notification = { alert: msg };
+    $timeout(function () {
+      delete $rootScope.notification;
+    }, 5000);        
+  }
 
   function reset() {
     $scope.data = null;
