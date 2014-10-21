@@ -12,16 +12,18 @@ angular.module('starter.controllers', [])
   };
 
   $scope.$on('notification', function ($scope, event) {
-    $scope.notification = event;
-    $rootScope.url = event.payload.url;
+    $rootScope.$apply(function() {
+      $rootScope.notification = event;  
+    });
 
     $timeout(function () {
       $location.url('/tab/main');
-    }, 1000);
+      delete $rootScope.notification;
+    }, 2000);
   });
 
   $scope.dismissAlert = function () {
-    delete $scope.notification;
+    delete $rootScope.notification;
   };
 
   $scope.showTwitter = function() {
@@ -74,15 +76,15 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MainCtrl', function ($rootScope, $scope, $ionicSlideBoxDelegate, service) {
-  $scope.fetchPhotos = function () {
+  function fetchPhotos(url) {
     service.get().then(function (res) {
-      $rootScope.photos = res.pictures.map(function (pic) {
+      $scope.photos = res.pictures.map(function (pic) {
         return $fh.cloud_props.hosts.url + '/' + pic;
       });
       $ionicSlideBoxDelegate.update();
 
-      if ($rootScope.url) {
-        selectSlide($rootScope.url);
+      if (url) {
+        selectSlide(url);
       }
     }, function (err) {
       console.log(err);
@@ -90,15 +92,19 @@ angular.module('starter.controllers', [])
   };
 
   function selectSlide(url) {
-    var length = $rootScope.photos.length;
+    var length = $scope.photos.length;
     for (var i = 0; i < length; i++) {
-      if ($rootScope.photos[i] === url) {
+      if ($scope.photos[i] === url) {
         $ionicSlideBoxDelegate.slide(i);
       }
     }
   }
+  
+  $scope.$on('notification', function ($scope, event) {
+    fetchPhotos(event.payload.url);
+  });
 
-  $scope.fetchPhotos();
+  fetchPhotos();
 })
 
 .controller('PictureCtrl', function ($scope, service) {});
