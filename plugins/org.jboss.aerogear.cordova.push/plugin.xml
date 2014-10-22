@@ -10,7 +10,7 @@
     MIT
   </license>
   <engines>
-    <engine name="cordova" version="&gt;=3.3.0"/>
+    <engine name="cordova" version=">=3.3.0"/>
   </engines>
   <js-module src="www/aerogear-push.js" name="AeroGear.UnifiedPush">
     <clobbers target="push"/>
